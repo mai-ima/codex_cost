@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <meta name="description" content="買うものと、買ったものを気持ちよく管理する買い物メモ" />
+    <title>KAGO — 買い物メモ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="KAGO ホーム">
+          <span class="brand-mark" aria-hidden="true">K</span>
+          <span>KAGO</span>
+        </a>
+        <p class="today" id="today"></p>
+        <button class="icon-button" id="clearButton" type="button" aria-label="購入済みを削除" title="購入済みを削除">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5"/></svg>
+        </button>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="pageTitle">
+          <div>
+            <p class="eyebrow">MY SHOPPING LIST</p>
+            <h1 id="pageTitle">今日、なに買う？</h1>
+            <p class="hero-copy">思いついたらすぐメモ。<br class="mobile-only" />お買い物を、もっと軽やかに。</p>
+          </div>
+          <div class="progress-card" aria-label="買い物の進捗">
+            <div class="progress-ring" id="progressRing"><span id="progressNumber">0</span><small>%</small></div>
+            <div><strong id="progressLabel">準備をはじめよう</strong><span id="progressDetail">アイテムを追加してください</span></div>
+          </div>
+        </section>
+
+        <section class="add-panel" aria-label="買い物アイテムを追加">
+          <form id="itemForm">
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+              <input id="itemInput" type="text" maxlength="50" autocomplete="off" placeholder="買うものを入力..." aria-label="買うもの" required />
+            </div>
+            <select id="categoryInput" aria-label="カテゴリー">
+              <option value="food">食料品</option>
+              <option value="daily">日用品</option>
+              <option value="other">その他</option>
+            </select>
+            <button class="add-button" type="submit"><span>追加する</span><span aria-hidden="true">＋</span></button>
+          </form>
+        </section>
+
+        <section class="list-section" aria-labelledby="listTitle">
+          <div class="section-heading">
+            <div><p class="eyebrow">TO BUY</p><h2 id="listTitle">買うもの</h2></div>
+            <span class="count-badge" id="remainingCount">0 items</span>
+          </div>
+          <div class="shopping-list" id="shoppingList"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <span aria-hidden="true">✓</span><strong>リストは空です</strong><p>上のフォームから買うものを追加しましょう</p>
+          </div>
+        </section>
+
+        <section class="history-section" aria-labelledby="historyTitle">
+          <div class="section-heading">
+            <div><p class="eyebrow">RECENTLY BOUGHT</p><h2 id="historyTitle">買い物記録</h2></div>
+            <button class="text-button" id="clearHistoryButton" type="button">記録をクリア</button>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </section>
+      </main>
+
+      <footer><span>KAGO</span><p>Small notes, better days.</p></footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
